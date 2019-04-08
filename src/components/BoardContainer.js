@@ -11,6 +11,8 @@ import {NewLaneButton} from '../styles/Elements'
 import Lane from './Lane'
 import NewLane from './NewLane'
 import { PopoverWrapper } from '@terebentina/react-popover'
+import {t} from '../../locales'
+
 
 import * as boardActions from '../actions/BoardActions'
 import * as laneActions from '../actions/LaneActions'
@@ -248,8 +250,8 @@ BoardContainer.defaultProps = {
   cardDraggable: true,
   cardDragClass: 'react_trello_dragClass',
   laneDragClass: 'react_trello_dragLaneClass',
-  addLaneTitle: '+ Add another lane',
-  addCardTitle: 'Add Card'
+  addLaneTitle: t('add_another_lane'),
+  addCardTitle: t('add_card')
 }
 
 const mapStateToProps = state => {

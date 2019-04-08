@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {LaneTitle, NewLaneButtons, Section} from '../styles/Base'
 import EditableLabel from './widgets/EditableLabel'
 import {AddButton, CancelButton} from '../styles/Elements'
+import {t} from '../../locales'
+
 
 class NewLane extends Component {
   updateField = (field, value) => {
@@ -21,8 +23,8 @@ class NewLane extends Component {
             <EditableLabel placeholder="title" onChange={val => this.updateField('title', val)} autoFocus/>
           </LaneTitle>
           <NewLaneButtons>
-            <AddButton onClick={this.handleAdd}>Add</AddButton>
-            <CancelButton onClick={onCancel}>Cancel</CancelButton>
+            <AddButton onClick={this.handleAdd}>{t('add')}</AddButton>
+            <CancelButton onClick={onCancel}>{t('cancel')}</CancelButton>
           </NewLaneButtons>
         </Section>
     )
