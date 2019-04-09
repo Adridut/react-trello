@@ -93,7 +93,8 @@ export const BoardDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 `
 
 export const Header = styled.header`

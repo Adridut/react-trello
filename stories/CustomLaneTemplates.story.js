@@ -16,7 +16,7 @@ const CustomLaneHeader = props => {
           marginBottom: 10,
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
         }}>
         <div style={{fontSize: 14, fontWeight: 'bold'}}>{props.title}</div>
         {props.label && (

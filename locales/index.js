@@ -1,5 +1,8 @@
 import french from './fr'
 import english from './en'
+import {lang} from './../stories/EditableBoard.story.js'
+
+
 
 
 export const t = (s) => {
@@ -8,8 +11,6 @@ export const t = (s) => {
     'en': english,
     'fr': french
   }
-
-  const lang = 'fr'
 
   return langMapping[lang][s]
 }

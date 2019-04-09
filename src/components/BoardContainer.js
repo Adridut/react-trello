@@ -10,16 +10,21 @@ import {BoardDiv, LaneSection} from '../styles/Base'
 import {NewLaneButton} from '../styles/Elements'
 import Lane from './Lane'
 import NewLane from './NewLane'
-import { PopoverWrapper } from '@terebentina/react-popover'
+import {PopoverWrapper} from '@terebentina/react-popover'
 import {t} from '../../locales'
 
 
 import * as boardActions from '../actions/BoardActions'
 import * as laneActions from '../actions/LaneActions'
 
+import UpdateModal from './UpdateModal.js'
+
+
 class BoardContainer extends Component {
   state = {
-    addLaneMode: false
+    addLaneMode: false,
+    isOpen: false,
+    card: null
   }
 
   componentDidMount() {
@@ -111,13 +116,33 @@ class BoardContainer extends Component {
       })
       return <span>{newCardWithProps}</span>
     } else {
-      return <NewLane onCancel={this.hideEditableLane} onAdd={this.addNewLane} />
+      return <NewLane onCancel={this.hideEditableLane} onAdd={this.addNewLane}/>
     }
   }
 
   get groupName() {
     const {id} = this.props
     return `TrelloBoard${id}`
+  }
+
+
+  modifyCardTitle = (card) => {
+    this.setState({isOpen: true, card})
+    // eventBus.publish({type: 'REMOVE_CARD', laneId: laneId, cardId: cardId})
+    // eventBus.publish({
+    //   type: 'ADD_CARD',
+    //   laneId: laneId,
+    //   card: {id: cardId, title: 'Buy Milk', label: '15 mins', description: 'Also set reminder'}
+    // })
+  }
+
+  closeModal = (modalResult) => {
+    debugger
+    this.props.actions.updateCards({
+      laneId: modalResult.laneId,
+      cards: [{title: modalResult.title, label: modalResult.label, description: modalResult.description}]
+    })
+    this.setState({isOpen: false, card: null})
   }
 
   render() {
@@ -153,33 +178,44 @@ class BoardContainer extends Component {
 
     return (
       <BoardDiv style={style} {...otherProps} draggable={false}>
+        <UpdateModal
+          isOpen={this.state.isOpen}
+          onClick={this.closeModal.bind(this)}
+          card={this.state.card}
+          onRequestClose={this.closeModal}/>
         <PopoverWrapper>
-        <Container
-          orientation="horizontal"
-          onDragStart={this.onDragStart}
-          dragClass={laneDragClass}
-          dropClass=""
-          onDrop={this.onLaneDrop}
-          lockAxis="x"
-          getChildPayload={index => this.getLaneDetails(index)}
-          groupName={this.groupName}>
-          {reducerData.lanes.map((lane, index) => {
-            const {id, droppable, ...otherProps} = lane
-            const laneToRender = (
-              <Lane
-                key={id}
-                boardId={this.groupName}
-                id={id}
-                getCardDetails={this.getCardDetails}
-                index={index}
-                droppable={droppable === undefined ? true : droppable}
-                {...otherProps}
-                {...passthroughProps}
-              />
-            )
-            return draggable && laneDraggable ? <Draggable key={lane.id}>{laneToRender}</Draggable> : <span key={lane.id}>{laneToRender}</span>
-          })}
-        </Container>
+          <Container
+            orientation="horizontal"
+            onDragStart={this.onDragStart}
+            dragClass={laneDragClass}
+            dropClass=""
+            onDrop={this.onLaneDrop}
+            lockAxis="x"
+            getChildPayload={index => this.getLaneDetails(index)}
+            groupName={this.groupName}>
+            {reducerData.lanes.map((lane, index) => {
+              const {id, droppable, ...otherProps} = lane
+              const laneToRender = (
+                <Lane
+                  key={id}
+                  boardId={this.groupName}
+                  id={id}
+                  getCardDetails={this.getCardDetails}
+                  onCardClick={(cardId, metadata, laneId) => {
+                    const allCards = [].concat(...this.props.data.lanes.map((lane) => lane.cards))
+                    const cardData = allCards.filter((e) => e.id === cardId)[0]
+                    this.modifyCardTitle(cardData)
+                  }}
+                  index={index}
+                  droppable={droppable === undefined ? true : droppable}
+                  {...otherProps}
+                  {...passthroughProps}
+                />
+              )
+              return draggable && laneDraggable ? <Draggable key={lane.id}>{laneToRender}</Draggable> :
+                <span key={lane.id}>{laneToRender}</span>
+            })}
+          </Container>
         </PopoverWrapper>
         {canAddLanes && (
           <Container orientation="horizontal">
@@ -235,12 +271,18 @@ BoardContainer.propTypes = {
 }
 
 BoardContainer.defaultProps = {
-  onDataChange: () => {},
-  handleDragStart: () => {},
-  handleDragEnd: () => {},
-  handleLaneDragStart: () => {},
-  handleLaneDragEnd: () => {},
-  onLaneAdd: () => {},
+  onDataChange: () => {
+  },
+  handleDragStart: () => {
+  },
+  handleDragEnd: () => {
+  },
+  handleLaneDragStart: () => {
+  },
+  handleLaneDragEnd: () => {
+  },
+  onLaneAdd: () => {
+  },
   editable: false,
   canAddLanes: false,
   hideCardDeleteIcon: false,

@@ -1,9 +1,12 @@
 {
   "add": "Add",
-  "cancel": "cancel",
+  "cancel": "Cancel",
   "add_another_lane": "Add another lane",
   "add_card":"Add Card",
-  "description": "description",
-  "label": "label",
-  "title": "title"
+  "description": "Description",
+  "label": "City",
+  "title": "Title",
+  "pick_language": "Pick your language",
+  "french": "French",
+  "english": "English"
 }

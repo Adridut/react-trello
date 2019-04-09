@@ -40,15 +40,15 @@ storiesOf('Drag-n-Drop', module)
       }
 
       return (
-        <Board
-          data={data}
-          draggable
-          onDataChange={shouldReceiveNewData}
-          handleDragStart={handleDragStart}
-          handleDragEnd={handleDragEnd}
-          handleLaneDragStart={handleLaneDragStart}
-          handleLaneDragEnd={handleLaneDragEnd}
-        />
+          <Board
+            data={data}
+            draggable
+            onDataChange={shouldReceiveNewData}
+            handleDragStart={handleDragStart}
+            handleDragEnd={handleDragEnd}
+            handleLaneDragStart={handleLaneDragStart}
+            handleLaneDragEnd={handleLaneDragEnd}
+          />
       )
     },
     {info: 'A demonstration of onDragStart and onDragEnd hooks for card and lanes'}
@@ -56,7 +56,7 @@ storiesOf('Drag-n-Drop', module)
   .add(
     'Drag Styling',
     () => {
-      return <Board data={data} cardDragClass="draggingCard" laneDragClass="draggingLane" draggable />
+      return <Board data={data} cardDragClass="draggingCard" laneDragClass="draggingLane" draggable/>
     },
     {info: 'Modifying appearance of dragged card'}
   )
