@@ -131,24 +131,12 @@ class BoardContainer extends Component {
   }
 
   closeModal = (modalResult) => {
-    // for (let i = 0; i++; i<this.state.allCards.length){
-    //   this.props.actions.updateCards({
-    //     laneId: modalResult.laneId,
-    //     cards: [cards, this.state.allCards[i]]
-    //   })
-    // }
-    const {title, description, label, id} = modalResult
+
+    const {title, description, label, id, laneId} = modalResult
     this.props.actions.updateCard({
-      laneId: modalResult.laneId,
-      card: {title, description, label, id},
+      laneId: laneId,
+      card: {title, description, label, id, laneId},
     })
-
-    // this.props.actions.updateCards({
-    //   laneId: modalResult.laneId,
-    //   cards: [{title, description, label, id}],
-    // })
-
-
     this.setState({isOpen: false, card: null})
   }
 
