@@ -1,12 +1,16 @@
 {
   "add": "Ajouter",
   "cancel": "Annuler",
-  "add_another_lane": "Ajouter une nouvelle colone",
-  "add_card": "Ajouter un carte",
+  "add_another_lane": "Ajouter une nouvelle colonne",
+  "add_card": "Ajouter une carte",
   "description": "Description",
   "label": "Ville",
   "title": "Titre",
   "pick_language": "Selectionez votre langue",
   "french": "Français",
-  "english": "Anglais"
+  "english": "Anglais",
+  "will_apply": "Je vais postuler",
+  "applied": "J'ai postulé",
+  "raised": "J'ai relancé",
+  "interview": "J'ai un entretien"
 }

@@ -8,5 +8,9 @@
   "title": "Title",
   "pick_language": "Pick your language",
   "french": "French",
-  "english": "English"
+  "english": "English",
+  "will_apply": "I will apply",
+  "applied": "I applied",
+  "raised": "I raised",
+  "interview": "I have an interview"
 }
