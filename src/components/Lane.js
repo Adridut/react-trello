@@ -12,6 +12,7 @@ import Loader from './Loader'
 import Card from './Card'
 import NewCard from './NewCard'
 import {AddCardLink, LaneFooter, LaneHeader, RightContent, ScrollableLane, Section, Title} from '../styles/Base'
+import {t} from '../../locales'
 
 import * as laneActions from '../actions/LaneActions'
 import {
@@ -234,7 +235,17 @@ class Lane extends Component {
       const customLaneElement = React.cloneElement(customLaneHeader, {...this.props})
       return <span>{customLaneElement}</span>
     } else {
-      const {title, label, titleStyle, labelStyle} = this.props
+      const {label, titleStyle, labelStyle, id} = this.props
+      let title = ''
+      if (id === '1') {
+        title = t('will_apply')
+      } else if (id === '2') {
+        title = t('applied')
+      } else if (id === '3') {
+        title = t('raised')
+      } else {
+        title = t('interview')
+      }
       return (
         <LaneHeader onDoubleClick={this.toggleLaneCollapsed}>
           <Title style={titleStyle}>{title}</Title>

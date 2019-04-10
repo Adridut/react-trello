@@ -1,7 +1,7 @@
 {
   "lanes": [
     {
-      "id": "PLANNED",
+      "id": "1",
       "title": "Je vais postuler",
       "style": {
         "width": "25%"
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "id": "WIP",
+      "id": "2",
       "title": "J'ai postulé",
       "style": {
         "width": "25%"
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": "3",
       "title": "J'ai relancé",
       "style": {
         "width": "25%"
@@ -57,7 +57,7 @@
       "cards": []
     },
     {
-      "id": "COMPLETED",
+      "id": "4",
       "title": "J'ai un entretien",
       "style": {
         "width": "25%"

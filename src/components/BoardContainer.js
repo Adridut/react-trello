@@ -24,7 +24,7 @@ class BoardContainer extends Component {
   state = {
     addLaneMode: false,
     isOpen: false,
-    card: null
+    card: null,
   }
 
   componentDidMount() {
@@ -128,20 +128,27 @@ class BoardContainer extends Component {
 
   modifyCardTitle = (card) => {
     this.setState({isOpen: true, card})
-    // eventBus.publish({type: 'REMOVE_CARD', laneId: laneId, cardId: cardId})
-    // eventBus.publish({
-    //   type: 'ADD_CARD',
-    //   laneId: laneId,
-    //   card: {id: cardId, title: 'Buy Milk', label: '15 mins', description: 'Also set reminder'}
-    // })
   }
 
   closeModal = (modalResult) => {
-    debugger
-    this.props.actions.updateCards({
+    // for (let i = 0; i++; i<this.state.allCards.length){
+    //   this.props.actions.updateCards({
+    //     laneId: modalResult.laneId,
+    //     cards: [cards, this.state.allCards[i]]
+    //   })
+    // }
+    const {title, description, label, id} = modalResult
+    this.props.actions.updateCard({
       laneId: modalResult.laneId,
-      cards: [{title: modalResult.title, label: modalResult.label, description: modalResult.description}]
+      card: {title, description, label, id},
     })
+
+    // this.props.actions.updateCards({
+    //   laneId: modalResult.laneId,
+    //   cards: [{title, description, label, id}],
+    // })
+
+
     this.setState({isOpen: false, card: null})
   }
 
@@ -202,7 +209,7 @@ class BoardContainer extends Component {
                   id={id}
                   getCardDetails={this.getCardDetails}
                   onCardClick={(cardId, metadata, laneId) => {
-                    const allCards = [].concat(...this.props.data.lanes.map((lane) => lane.cards))
+                    const allCards = [].concat(...this.props.reducerData.lanes.map((lane) => lane.cards))
                     const cardData = allCards.filter((e) => e.id === cardId)[0]
                     this.modifyCardTitle(cardData)
                   }}

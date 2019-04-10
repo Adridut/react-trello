@@ -7,7 +7,7 @@ class UpdateModal extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {title: '', label: '', description:''};
+    this.state = {id: null, title: '', label: '', description:''};
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
